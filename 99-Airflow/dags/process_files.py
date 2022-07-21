@@ -12,12 +12,15 @@ import requests
 
 
 
+# def download_file():
+#     indata = requests.get('https://raw.githubusercontent.com/pavanmg/EKG-Foundations/master/04A-postgress/create_world.sql')
+#     with open('/opt/airflow/dags/files/create_world.sql', 'w') as outfile:
+#         outfile.write(indata.text)
+
 def download_file():
-    indata = requests.get('https://raw.githubusercontent.com/tadinve/EKG-Foundations/master/04A-postgress/create_world.sql')
-    with open('/opt/airflow/dags/files/create_world.sql', 'w') as outfile:
-        outfile.write(indata.text)
-
-
+     indata = requests.get('https://raw.githubusercontent.com/pavanmg/EKG-Foundations/master/04A-postgress/world.sql')
+     with open('/opt/airflow/dags/files/create_world.sql', 'w') as outfile:
+         outfile.write(indata.text)
 
 with DAG(   dag_id="process_files", 
             start_date= airflow.utils.dates.days_ago(1)
@@ -49,12 +52,18 @@ with DAG(   dag_id="process_files",
     )
 
 
+    #upload_to_pg = PostgresOperator(
+    #            task_id = "upload_to_pg",
+    #            postgres_conn_id = "pg_conn",
+    #            sql = "files/create_world.sql"
+    #)
+
     upload_to_pg = PostgresOperator(
                 task_id = "upload_to_pg",
                 postgres_conn_id = "pg_conn",
-                sql = "files/create_world.sql"
-
+                sql = "files/world.sql"
     )
+
 
     end = DummyOperator(
             task_id= "end"
