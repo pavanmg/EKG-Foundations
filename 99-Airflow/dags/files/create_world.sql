@@ -46,7 +46,7 @@ CREATE TABLE countrylanguage (
 
 
 
-INSERT INTO city((id, name, countrycode, district, population))
+INSERT INTO city('id','name','countrycode','district','population')
 VALUES 
 (1,'Kabul','AFG','Kabol',1780000)
 (2,'Qandahar','AFG','Qandahar',237500)
