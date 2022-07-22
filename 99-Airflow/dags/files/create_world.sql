@@ -9,7 +9,7 @@ BEGIN;
 
 SET client_encoding = 'LATIN1';
 
-CREATE TABLE city (
+CREATE TABLE IF NOT EXISTS  city (
     id integer NOT NULL,
     name text NOT NULL,
     countrycode character(3) NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE city (
     population integer NOT NULL
 );
 
-CREATE TABLE country (
+CREATE TABLE IF NOT EXISTS  country (
     code character(3) NOT NULL,
     name text NOT NULL,
     continent text NOT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE country (
     CONSTRAINT country_continent_check CHECK ((((((((continent = 'Asia'::text) OR (continent = 'Europe'::text)) OR (continent = 'North America'::text)) OR (continent = 'Africa'::text)) OR (continent = 'Oceania'::text)) OR (continent = 'Antarctica'::text)) OR (continent = 'South America'::text)))
 );
 
-CREATE TABLE countrylanguage (
+CREATE TABLE IF NOT EXISTS  countrylanguage (
     countrycode character(3) NOT NULL,
     "language" text NOT NULL,
     isofficial boolean NOT NULL,
